@@ -28,7 +28,8 @@ const handleUserPage = (req, res) => {
   })
   res.status(200);
   res.render('pages/profile', {
-    user: currentUser
+    user: currentUser,
+    users: users
   })
 }
 

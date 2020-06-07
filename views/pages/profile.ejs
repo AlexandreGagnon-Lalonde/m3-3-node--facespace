@@ -6,6 +6,20 @@
 
 <div>
   <h3><%= user.name %>'s Friends</h3>
+  <ul>
+    <% let currentFriend; %>
+    <% user.friends.forEach(friend => { %>
+      <% users.forEach(item => { %>
+        <% if (item._id === friend) { %>
+          <% currentFriend = item %>
+        <% } %>
+      <% }) %>
+      <li>
+        <img src="<%= currentFriend.avatarUrl %>">
+        <%= currentFriend.name %>
+      </li>
+    <% }) %>
+  </ul>
 </div>
 
 <%- include('../partials/footer') %>
