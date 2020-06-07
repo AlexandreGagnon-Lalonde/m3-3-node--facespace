@@ -34,7 +34,8 @@ const handleUserPage = (req, res) => {
 }
 
 const handleSignin = (req, res) => {
-  res.send('ok');
+  res.status(200);
+  res.render('pages/signin', {})
 }
 // -----------------------------------------------------
 // server endpoints
