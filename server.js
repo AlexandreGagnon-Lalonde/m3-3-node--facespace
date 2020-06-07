@@ -20,7 +20,16 @@ const handleHomepage = (req, res) => {
 }
 
 const handleUserPage = (req, res) => {
-  res.status(200).send(`${req.params.userID}`)
+  let currentUser;
+  users.forEach(item => {
+    if (item._id === req.params.userID) {
+      currentUser = item;
+    }
+  })
+  res.status(200);
+  res.render('pages/profile', {
+    user: currentUser
+  })
 }
 
 // -----------------------------------------------------
