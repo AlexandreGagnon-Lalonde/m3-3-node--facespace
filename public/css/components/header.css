@@ -4,7 +4,11 @@
   padding: 0 var(--page-horizontal-padding);
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 .header h1 {
   color: #fff;
+}
+.header a {
+  text-decoration: none;
 }

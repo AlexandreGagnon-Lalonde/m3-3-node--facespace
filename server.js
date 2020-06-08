@@ -7,6 +7,12 @@ const { users } = require('./data/users');
 
 let currentUser = {};
 
+let signin = {
+  checker: false,
+  value: 'Sign In',
+  path: '/signin'
+}
+
 // declare the 404 function
 const handleFourOhFour = (req, res) => {
   res.status(404).send("I couldn't find what you're looking for.");
@@ -14,25 +20,28 @@ const handleFourOhFour = (req, res) => {
 
 const handleHomepage = (req, res) => {
   res.status(200).render('pages/homepage', {
+    signin: signin,
     users: users
   });
 }
 
 const handleUserPage = (req, res) => {
-  let currentUser;
   users.forEach(item => {
     if (item._id === req.params.userID) {
       currentUser = item;
     }
   })
   res.status(200).render('pages/profile', {
+    signin: signin,
     user: currentUser,
     users: users
   });
 }
 
 const handleSignin = (req, res) => {
-  res.status(200).render('pages/signin', {});
+  res.status(200).render('pages/signin', {
+    signin: signin
+  });
 }
 
 const handleName = (req, res) => {
@@ -40,9 +49,12 @@ const handleName = (req, res) => {
   let checker = users.find(user => user.name === firstName);
 
   if (checker) {
-    res.status(200).redirect(`/users/${checker._id}`).render('/users/:userId', handleUserPage);
+    res.status(200).redirect(`/users/${checker._id}`)//.render('/users/:userId', handleUserPage);
+    signin.checker = true;
+    signin.value = checker.name;
+    signin.path = `/users/${checker._id}`
   } else {
-    res.status(404).redirect('/signin').render('/signin', handleSignin);
+    res.status(404).redirect('/signin')//.render('/signin', handleSignin);
   }
 }
 
