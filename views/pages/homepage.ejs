@@ -4,9 +4,11 @@
   <h2>All Facespace members</h2>
   <ul class="homepage__all">
     <% users.forEach(item => { %>
-      <li class="homepage__all--user">
-        <img src="<%= item.avatarUrl %>">
-      </li>
+      <a href="/users/<%= item._id %>">
+        <li class="homepage__all--user">
+          <img src="<%= item.avatarUrl %>">
+        </li>
+      </a>
     <% }) %>
   </ul>
 </div>

@@ -12,4 +12,9 @@
 }
 .homepage__all--user img {
   width: 120px;
+  transition: all 0.2s;
+}
+.homepage__all--user img:hover {
+  border: 5px solid var(--primary-color);
+  opacity: 0.85;
 }
