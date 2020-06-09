@@ -70,6 +70,19 @@ const handleName = (req, res) => {
   }
 }
 
+const handleSignout = (req, res) => {
+  if (currentUser) {
+    res.status(200).redirect('/signin');
+    signin.verify = false;
+    signin.value = 'Sign In';
+    signin.path = '/signin';
+    signin.signout = '';
+    currentUser = {};
+  } else {
+    res.status(404).redirect('/');
+  }
+}
+
 // -----------------------------------------------------
 // server endpoints
 express()
@@ -83,6 +96,7 @@ express()
   .get('/users/:userID', handleUserPage)
   .get('/signin', handleSignin)
   .get('/getname', handleName)
+  .get('/signout', handleSignout)
 
   // a catchall endpoint that will send the 404 message.
   .get('*', handleFourOhFour)
