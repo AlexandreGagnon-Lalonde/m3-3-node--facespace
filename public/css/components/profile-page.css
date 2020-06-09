@@ -10,6 +10,7 @@
   margin: 0 auto;
   padding: 0 var(--page-horizontal-padding);
   max-width: var(--max-content-width);
+  position: relative;
 }
 .profile-page__user--avatar {
   border: 8px solid var(--primary-color);
@@ -25,6 +26,12 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+.profile-page__user--sign-out {
+  position: absolute;
+  top: 0;
+  right: 18px;
+  text-decoration: none;
 }
 .friend {
   margin-bottom: 16px;

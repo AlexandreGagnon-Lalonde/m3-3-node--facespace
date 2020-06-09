@@ -10,7 +10,8 @@ let currentUser = {};
 let signin = {
   checker: false,
   value: 'Sign In',
-  path: '/signin'
+  path: '/signin',
+  signout: ''
 }
 
 // declare the 404 function
@@ -52,7 +53,8 @@ const handleName = (req, res) => {
     res.status(200).redirect(`/users/${checker._id}`)//.render('/users/:userId', handleUserPage);
     signin.checker = true;
     signin.value = checker.name;
-    signin.path = `/users/${checker._id}`
+    signin.path = `/users/${checker._id}`;
+      signin.signout = 'Sign Out';
   } else {
     res.status(404).redirect('/signin')//.render('/signin', handleSignin);
   }

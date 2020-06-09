@@ -3,9 +3,16 @@
   max-width: var(--max-content-width);
   padding: 0 var(--page-horizontal-padding);
 }
+.home-page h2 {
+  display: block;
+  max-width: 1152px;
+  margin: 18px auto;
+}
 .homepage__all {
   display: flex;
   flex-wrap: wrap;
+  max-width: 1152px;
+  margin: 0 auto;
 }
 .homepage__all--user {
   margin: 0 4px;
