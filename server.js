@@ -22,7 +22,8 @@ const handleFourOhFour = (req, res) => {
 const handleHomepage = (req, res) => {
   res.status(200).render('pages/homepage', {
     signin: signin,
-    users: users
+    users: users,
+    currentUser: currentUser
   });
 }
 

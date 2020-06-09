@@ -16,6 +16,19 @@
 }
 .homepage__all--user {
   margin: 0 4px;
+  position: relative;
+}
+.homepage__all--user-friend {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  text-align: center;
+  width: 50%;
+  line-height: 20px;
+  background: rgba(204, 85, 0, 0.7);
+  color: #fafafa;
+  transition: all 0.2s;
 }
 .homepage__all--user img {
   width: 120px;
@@ -24,4 +37,7 @@
 .homepage__all--user img:hover {
   border: 5px solid var(--primary-color);
   opacity: 0.85;
+}
+.homepage__all--user img:hover + p {
+  display: none;
 }
