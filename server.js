@@ -8,7 +8,7 @@ const { users } = require('./data/users');
 let currentUser = {};
 
 let signin = {
-  checker: false,
+  verify: false,
   value: 'Sign In',
   path: '/signin',
   signout: ''
@@ -27,20 +27,26 @@ const handleHomepage = (req, res) => {
 }
 
 const handleUserPage = (req, res) => {
+  let currentPage;
   users.forEach(item => {
     if (item._id === req.params.userID) {
-      currentUser = item;
+      currentPage = item;
     }
   })
+  if (currentPage._id === currentUser._id) {
+    signin.signout = 'Sign Out';
+  } else {
+    signin.signout = '';
+  }
   res.status(200).render('pages/profile', {
     signin: signin,
-    user: currentUser,
+    user: currentPage,
     users: users
   });
 }
 
 const handleSignin = (req, res) => {
-  if (!signin.checker) {
+  if (!signin.verify) {
     res.status(200).render('pages/signin', {
       signin: signin
     });
@@ -51,13 +57,12 @@ const handleSignin = (req, res) => {
 
 const handleName = (req, res) => {
   let firstName = req.query.firstName;
-  let checker = users.find(user => user.name === firstName);
-
-  if (checker) {
-    res.status(200).redirect(`/users/${checker._id}`)//.render('/users/:userId', handleUserPage);
-    signin.checker = true;
-    signin.value = checker.name;
-    signin.path = `/users/${checker._id}`;
+  currentUser = users.find(user => user.name === firstName);
+  if (currentUser) {
+    res.status(200).redirect(`/users/${currentUser._id}`)//.render('/users/:userId', handleUserPage);
+    signin.verify = true;
+    signin.value = currentUser.name;
+    signin.path = `/users/${currentUser._id}`;
     signin.signout = 'Sign Out';
   } else {
     res.status(404).redirect('/signin')//.render('/signin', handleSignin);
