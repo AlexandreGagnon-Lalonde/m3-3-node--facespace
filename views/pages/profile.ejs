@@ -18,10 +18,12 @@
           <% } %>
         <% }) %>
         <% if (currentFriend !== undefined) { %>
-          <li class="friend">
-            <img src="<%= currentFriend.avatarUrl %>">
-            <p><%= currentFriend.name %></p>
-          </li>
+            <li class="friend">
+              <a href="/users/<%= currentFriend._id %>">
+                <img src="<%= currentFriend.avatarUrl %>">
+                <p><%= currentFriend.name %></p>
+              </a>
+            </li>
         <% } %>
       <% }) %>
     </ul>
