@@ -40,9 +40,13 @@ const handleUserPage = (req, res) => {
 }
 
 const handleSignin = (req, res) => {
-  res.status(200).render('pages/signin', {
-    signin: signin
-  });
+  if (!signin.checker) {
+    res.status(200).render('pages/signin', {
+      signin: signin
+    });
+  } else {
+    res.status(200).redirect('/');
+  }
 }
 
 const handleName = (req, res) => {
@@ -54,7 +58,7 @@ const handleName = (req, res) => {
     signin.checker = true;
     signin.value = checker.name;
     signin.path = `/users/${checker._id}`;
-      signin.signout = 'Sign Out';
+    signin.signout = 'Sign Out';
   } else {
     res.status(404).redirect('/signin')//.render('/signin', handleSignin);
   }
